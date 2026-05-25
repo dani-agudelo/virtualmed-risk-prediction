@@ -180,9 +180,9 @@ El campo `contribution` representa la contribución relativa de esa feature al s
 
 | Variable | Descripción | Ejemplo |
 |---|---|---|
-| `MODEL_DIR` | Ruta base donde se encuentran los modelos versionados | `/app/models` |
+| `MODEL_DIR` | Ruta base donde se encuentran los modelos versionados | `/models` |
 | `MODEL_VERSION` | Versión a cargar al arrancar | `v1` |
-| `PORT` | Puerto de escucha | `8000` |
+| `DATA_DIR` | Ruta al dataset | `cardio_train.csv` |
 
 El modelo se carga en memoria al arrancar la aplicación (`startup` event). Una llamada a `/predict/cardiovascular` con el modelo no cargado retorna `503`.
 

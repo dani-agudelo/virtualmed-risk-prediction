@@ -253,15 +253,15 @@ def main():
     args = parser.parse_args()
 
     load_dotenv()
-    model_dir = os.getenv("MODEL_DIR", args.input)
+    data_dir = os.getenv("DATA_DIR", args.input)
 
     print(f"\n=== VirtualMed — prepare_dataset.py ===")
-    print(f"Input:   {model_dir}")
+    print(f"Input:   {data_dir}")
     print(f"Output:  {args.output}")
     print(f"Models:  {args.models}\n")
 
     # 1. Carga
-    df = load_raw(model_dir)
+    df = load_raw(data_dir)
 
     # 2. Renombrar y derivar columnas
     df = rename_and_derive(df)
