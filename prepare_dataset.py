@@ -254,11 +254,13 @@ def main():
 
     load_dotenv()
     data_dir = os.getenv("DATA_DIR", args.input)
+    model_version = os.getenv("MODEL_VERSION")
+    models_dir = os.path.join(args.models, model_version) if model_version else args.models
 
     print(f"\n=== VirtualMed — prepare_dataset.py ===")
     print(f"Input:   {data_dir}")
     print(f"Output:  {args.output}")
-    print(f"Models:  {args.models}\n")
+    print(f"Models:  {models_dir}\n")
 
     # 1. Carga
     df = load_raw(data_dir)
@@ -296,8 +298,8 @@ def main():
     save_splits(X_train, X_val, X_test, y_train, y_val, y_test, args.output)
 
     # 12. Exportar artefactos
-    save_feature_list(args.models, imputation_values)
-    save_imputation_values(args.models, imputation_values)
+    save_feature_list(models_dir, imputation_values)
+    save_imputation_values(models_dir, imputation_values)
 
     print("\n✓ Preprocesamiento completado.\n")
 
