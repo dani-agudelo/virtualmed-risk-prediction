@@ -228,5 +228,11 @@ $RECYCLE.BIN/
 *.lnk
 
 # DATA
-data/processed/
-models/cvd_risk/
+data/processed
+feature_list.json
+imputation_values.json
+metadata.json
+feature_importance.json
+feature_importance.png
+calibration_curve.png
+roc_curve.png

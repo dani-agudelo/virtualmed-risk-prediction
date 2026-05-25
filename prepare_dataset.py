@@ -7,7 +7,7 @@ Fuente: Cardiovascular Disease Dataset (Sulianova, Kaggle)
         https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset
 
 Uso:
-    python prepare_dataset.py --input cardio_train.csv --output data/processed/
+    python prepare_dataset.py --output data/processed/
 
 Salidas:
     data/processed/train.csv
@@ -24,6 +24,7 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from dotenv import load_dotenv
 
 # ── Configuración ─────────────────────────────────────────────────────────────
 
@@ -128,7 +129,6 @@ def add_synthetic_family_history(df: pd.DataFrame) -> pd.DataFrame:
     dataset original. Se genera con prevalencia clínica razonable (25 % positivo)
     y semilla fija para reproducibilidad.
 
-    Al ser obligatoria, NO se le introducen missings artificiales.
     Se documenta en DATASET_PROVENANCE.md.
     """
     rng = np.random.default_rng(RANDOM_STATE)
@@ -252,13 +252,16 @@ def main():
     parser.add_argument("--models",  default="models/cvd_risk", help="Directorio de salida para artefactos del modelo")
     args = parser.parse_args()
 
+    load_dotenv()
+    model_dir = os.getenv("MODEL_DIR", args.input)
+
     print(f"\n=== VirtualMed — prepare_dataset.py ===")
-    print(f"Input:   {args.input}")
+    print(f"Input:   {model_dir}")
     print(f"Output:  {args.output}")
     print(f"Models:  {args.models}\n")
 
     # 1. Carga
-    df = load_raw(args.input)
+    df = load_raw(model_dir)
 
     # 2. Renombrar y derivar columnas
     df = rename_and_derive(df)
