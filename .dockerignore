@@ -1,0 +1,32 @@
+# Dataset original — no debe ir dentro de la imagen (es grande y no se necesita en runtime)
+cardio_train.csv
+data/
+
+# Scripts de entrenamiento — no se usan en runtime
+prepare_dataset.py
+train_cardiovascular_risk.py
+
+# Artefactos de entrenamiento que no son el modelo
+models/cvd_risk/v1/feature_importance.png
+models/cvd_risk/v1/calibration_curve.png
+models/cvd_risk/v1/roc_curve.png
+
+# Entorno virtual local
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de IDE y sistema
+.vscode/
+.idea/
+.DS_Store
+*.env
+
+# Git
+.git/
+.gitignore
+
+# Documentación (no se necesita en runtime)
+docs/
